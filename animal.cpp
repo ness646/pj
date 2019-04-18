@@ -1,6 +1,6 @@
 
 
-
+enum Espece {Vide,Lapin,Renard}
 
 
 Animal creerAnimal(Espece c, Coord c){
