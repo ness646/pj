@@ -5,7 +5,7 @@ enum Espece {Vide,Lapin,Renard}
 
 Animal creerAnimal(Espece c, Coord c){
  Animal a;
-
+}
 
 
 Coord coordAnimal( Animal a){
