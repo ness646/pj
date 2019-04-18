@@ -113,6 +113,7 @@ bool egalCoord(coord c1,coord c2){
  
  int main(){
 coord c1 = nouvcoord(2,1);
+coord c2 = nouvcoord(1,2);
 afficheCoord(c1);
 cout << endl;
 return 0;
