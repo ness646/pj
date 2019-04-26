@@ -11,13 +11,11 @@ using namespace std;
 const int FoodInit=5;
 const int MaxFood=10;
 const int FoodLapin=5;
+const int FoodReprod=1000000; // CHANGEZ LES VALEURS 
+const int ProbbirthRenard=1000000; 
+const int minFreebirthlapin=1000000; 
 
-
-
-
-
-
-enum Espece {Vide,Lapin,Renard}
+enum Espece {Vide,Lapin,Renard};
 struct Animal{
    Espece espece;
    int food;
@@ -25,11 +23,9 @@ struct Animal{
 };
 
 
-
-float hasard(){
+float hasard(){ // ERREUR, QUEL EST LA DOC ?
     return float(rand()) / float(RAND_MAX);
 }
-
 
 Animal creerAnimal(Espece e, coord c){
      Animal a;
@@ -42,15 +38,6 @@ Animal creerAnimal(Espece e, coord c){
      }
         return a;
  }
-   
-          
-         
-        
-       
-
-
-
-
 
 coord coordAnimal( Animal a){
  return a.c;
@@ -100,12 +87,14 @@ bool mortAnimal(Animal a){
   
 bool seReproduitAnimal(Animal a, int nbVoisinsVides){
      if(especeAnimal(a)==Renard){
-       return nourritureRenard(a)>=FoodReprod) and (hasard()<ProbbirthRenard);
-     }else if(especeAnimal(a)==lapin) {
-        return (nbvoisinvides>=minFreebirthlapin) and (hasard()<PropbirthLapin)
-        } else { 
-            cout<<"pas d'animal ici"<<endl;
-            return false;
+       return nourritureRenard(a)>=FoodReprod and (hasard()<ProbbirthRenard);
+     }
+     else if(especeAnimal(a)==Lapin) {
+        return (nbVoisinsVides>=minFreebirthlapin) and (hasard()<ProbbirthRenard);
+        }
+    else { 
+        cout<<"pas d'animal ici"<<endl;
+        return false;
        }
    }
  
