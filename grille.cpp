@@ -94,4 +94,28 @@ void initialiseGrille(grille &g) { //OK
     }
 }
 
-
+EnsCoord voisinespece(grille g,coord c, Espece e){
+     EnsCoord ec;
+     ec=trouverVoisins(c);
+     for(int i=0;i<cardEC(ec);i++){
+        if(especeAnimal(getAnimal(g,c))!=e) {
+                supprimeEC(ec,c);
+                
+          }
+       }
+      return  ec;
+    
+    }
+     
+EnsCoord voisinvide(grille g,coord c){
+     EnsCoord ec;
+     ec=trouverVoisins(c);
+    for(int i=0;i<cardEC(ec);i++){
+        if(especeAnimal(getAnimal(g,c))!=Vide) {
+                supprimeEC(ec,c);
+                
+          }
+       }
+      return  ec;
+    
+    }
