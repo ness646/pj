@@ -83,3 +83,9 @@ void supprimeEC(EnsCoord &ec, coord c) {
         }
     }
 }
+coord randomEC(EnsCoord ec){
+  if(ec.nbElts==0)
+    return ec.tab[0];
+  int alea = rand()%ec.nbElts;// renvoie un element [0,ex.nbElts-1]
+  return ec.tab[alea]; 
+}
