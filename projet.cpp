@@ -24,7 +24,7 @@ EnsCoord toutEspece(grille g, Espece e) {
 
 
 
-
+/*deplace un renard dans une case d'un lapin et retourne vrai sinon retourne faux*/
 bool attaqueRenard(grille g, Animal &a){
   if( especeAnimal(a) == Renard ){
     EnsCoord ec=CreerEC();
@@ -49,7 +49,7 @@ bool attaqueRenard(grille g, Animal &a){
 
 
 
-
+/*deplace un animal dans une case vide*/
 void deplaceAnimal(grille g, grille &ng, Animal &a){
   coord res;
   coord c = coordAnimal(a);
