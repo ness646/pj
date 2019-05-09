@@ -161,7 +161,7 @@ int main(){
  afficheGrille(gNew);
 	*/
 while ( (lapins != 0) && (renards != 0) ){
-    usleep(1000000);
+    usleep(1000000); /* plus le chiffre est grand à l'interieur et plus sa ralentie le terminal*/
     grilleVide(gNew);
  	  deplacetousleslapins(gOld,gNew);
  	  deplacetouslesrenard(gOld,gNew);
