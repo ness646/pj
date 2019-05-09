@@ -31,26 +31,27 @@ void afficheEC(EnsCoord ec){
   cout<<endl;
 }
  
- 
+ /* Afficher un ensemble de coordonnées ne contenant aucun élément */ 
 EnsCoord CreerEC() {
   EnsCoord ec;
   ec.nbElts=0;
   return ec;
 }
    
- 
+ /* Ajouter une coordonnée à un ensemble de coordonnées */
+
 void ajouteEC(EnsCoord &ec, coord c){
   ec.tab[ec.nbElts]=c;
   ec.nbElts++;
 }
  
- 
+ /* Afficher le nombre d’éléments d’un ensemble de coordonnées */
 int cardEC (EnsCoord ec) {
   return ec.nbElts;
     
 }
  
- 
+ /* Afficher l’ensemble des coordonnées des voisines d'une coordonnée c */
 EnsCoord trouverVoisins(coord c){
   /*
   EnsCoord CoordAutour;
@@ -96,10 +97,10 @@ EnsCoord trouverVoisins(coord c){
           
  
  //** c'est faux
- /* Tu cherche la coordonnée dans le tableau
- * Une fois trouvée tu enregistres l'indexe 
- * Puis tu copies les elements dans l'indexe n+1 dans n
- * tu soustraies le nombre d'elements dans le tableau
+ /* On cherche la coordonnée dans le tableau
+ * Une fois trouvée on l'enregistre l'indexe 
+ * Puis on copie les elements dans l'indexe n+1 dans n
+ * on soustraie le nombre d'elements dans le tableau
  * attention a ne pas déborder dans le tableau....
  */ 
 void supprimeEC(EnsCoord &ec, coord c) {
@@ -125,6 +126,8 @@ void supprimeEC(EnsCoord &ec, coord c) {
 
 
 }
+
+/* Afficher une coordonnée au hasard dans un ensemble de coordonnées */
 coord randomEC(EnsCoord ec){
   if(ec.nbElts==0)
     return ec.tab[0];
