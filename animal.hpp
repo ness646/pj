@@ -12,8 +12,8 @@ const int FoodLapin=5;
 const int FoodReprod=8; // CHANGEZ LES VALEURS 
 const int ProbbirthRenard=0.05; 
 const int minFreebirthlapin=4; 
-const float ProbRenard=0.20; 
-const float ProbLapin=0.07; 
+const float ProbRenard=0.07; 
+const float ProbLapin=0.30; 
 
 enum Espece {Vide,Lapin,Renard};
 struct Animal{

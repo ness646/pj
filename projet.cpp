@@ -18,25 +18,35 @@ EnsCoord toutEspece(grille g, Espece e) {
       }
     }
   }
-  cout<<" la taille de ec dans toutEspece: "<< cardEC(ec)<<endl;
   return ec;  
 }
 
 
 bool attaqueRenard(grille &g, Animal &a){
-    EnsCoord L = voisinespece(g, a.c, Lapin);
-    if(cardEC(L)>0){
-        coord c = randomEC(L);
-        changeCoordAnimal(a,c);
-        mangeRenard(a);
-        setAnimal(g,a);
-        return true;
-    }
-    else{
-              cout<<"mange"<<endl;
+ EnsCoord voisins;
+  coord c;
+  Animal animalCase, nouveauNe;
+  if(especeAnimal(a) == Renard){
+    voisins = trouverVoisins( creerCoord(getX(a.c), getY(a.c)));
 
-        return false;
-    }
+      //on teste toutes les cases autour au hasard
+      while(cardEC(voisins)!=0){
+        c = randomEC(voisins);
+        animalCase = g.tab[getX(c)][getY(c)];
+        if(especeAnimal(animalCase) == Lapin){
+          if(seReproduitAnimal(a,voisins.nbElts)){
+            nouveauNe = creerAnimal(Renard, coordAnimal(a));
+            setAnimal(g, nouveauNe);
+          }
+          mangeRenard(a);
+          changeCoordAnimal(a, c);
+          setAnimal(g, a);
+          return true;
+        }
+      supprimeEC(voisins,c);
+      }
+  }
+  return false;
 
 }
 
@@ -69,7 +79,6 @@ void deplacetousleslapins(grille g, grille &ng){
   ec=toutEspece(g, Lapin);
   coord c;
   Animal a;
-  cout<<" la taille de ec est: "<< cardEC(ec)<<endl;
   while(cardEC(ec)!=0){
     c= randomEC(ec);
     a=getAnimal(g,c);
@@ -87,9 +96,6 @@ void deplacetousleslapins_(grille g, grille &ng){
   ec=toutEspece(g, Lapin);
   coord c, c1;
   Animal a;
-  cout<<" la taille de ec est: "<< cardEC(ec)<<endl;
-  int compteur=0;
-  cout<<"cardEC "<<cardEC(ec)<<endl;
   while(cardEC(ec)>0){
     c= randomEC(ec);
     a=getAnimal(g,c);
@@ -99,46 +105,38 @@ void deplacetousleslapins_(grille g, grille &ng){
     setAnimal(ng, a);
     supprimeEC(ec, c);
     //afficheGrille(ng);
-    compteur++;
-    cout<<"compteur " <<compteur<< endl;
   }
 }
 
 void deplacetouslesrenard(grille g,grille &ng){
-    EnsCoord E = toutEspece(g,Renard);
-    EnsCoord V;
-    Animal bebe;
+  EnsCoord ensRenard = toutEspece(g, Renard);
+  EnsCoord voisins, casesVides;
+  Animal nouveauNe;
+  coord destination;
+
     int compteur;
-    for(int i = 0;i< cardEC(E);i++){
-        Animal a = getAnimal(g, E.tab[i]);
-        V = voisinvide(ng, a.c);
-        faimRenard(a);
-        if(not mortAnimal(a)){
-            if(not attaqueRenard(ng, a)){
-              cout<<"test"<<endl;
-                if(seReproduitAnimal(a,V.nbElts)){
-                    //exit(1);
-                    coord c = randomEC(V);
-                    bebe = creerAnimal(a.espece,c);
-                    cout<<"bebe"<<endl;
-                    setAnimal(ng,bebe);
-                    supprimeEC(V,bebe.c);
-                }
-                if(V.nbElts > 0){
-                    coord c = randomEC(V);
-                    changeCoordAnimal(a,c);
-                    setAnimal(ng,a);
-                }
-            }
-            else{
-                if(seReproduitAnimal(a,V.nbElts)){
-                    coord c = randomEC(V);
-                    bebe = creerAnimal(a.espece, c);
-                    setAnimal(ng,bebe);
-                }
-            }
-        }
+    for(int i = 0; i<cardEC(ensRenard); i++){
+    Animal renard = g.tab[getX(ensRenard.tab[i])][getY(ensRenard.tab[i])];
+
+    if(not mortAnimal(renard)){
+      //S'il n'est pas mort on prends ses voisins et une destination au hasard parmi celles ci
+      voisins = trouverVoisins(creerCoord(getX(ensRenard.tab[i]), getY(ensRenard.tab[i])));
+      casesVides = voisinvide(ng, creerCoord(getX(ensRenard.tab[i]), getY(ensRenard.tab[i])));
+
+      if(seReproduitAnimal(renard, voisins.nbElts)){
+        nouveauNe = creerAnimal(Renard, coordAnimal(renard));
+        setAnimal(ng, nouveauNe);
+      }
+      //Dans le cas ou il y a un lapin dans la case
+      if(not attaqueRenard(ng, renard) and cardEC(casesVides)>0 ){
+        destination = randomEC(casesVides);
+        faimRenard(renard);
+        changeCoordAnimal(renard, destination);
+        setAnimal(ng, renard);
+      }
     }
+  }
+
 }
 
 
@@ -165,10 +163,7 @@ int main(){
 while ( (lapins != 0) && (renards != 0) ){
     usleep(1000000);
     grilleVide(gNew);
-    afficheGrille(gNew);
  	  deplacetousleslapins(gOld,gNew);
-        afficheGrille(gNew);
-
  	  deplacetouslesrenard(gOld,gNew);
     copieGrille(gNew, gOld);
     verifieGrille(gOld);
