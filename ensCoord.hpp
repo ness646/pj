@@ -46,5 +46,5 @@ int cardEC (EnsCoord ec);
  
 EnsCoord trouverVoisins( coord c);
 
-void surprimeEC(EnsCoord &ec,coord c);
+void supprimeEC(EnsCoord &ec,coord c);
 #endif
