@@ -1,7 +1,3 @@
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
-
-
 #include <cmath>
 #include <iostream>
 using namespace std;
@@ -11,9 +7,9 @@ using namespace std;
 const int FoodInit=5;
 const int MaxFood=10;
 const int FoodLapin=5;
-const int FoodReprod=1000000; // CHANGEZ LES VALEURS 
-const int ProbbirthRenard=1000000; 
-const int minFreebirthlapin=1000000; 
+const int FoodReprod=8; // CHANGEZ LES VALEURS 
+const int ProbbirthRenard=0.05; 
+const int minFreebirthlapin=4; 
 const float ProbRenard=0.20; 
 const float ProbLapin=0.07; 
 
