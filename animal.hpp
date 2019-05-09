@@ -1,3 +1,9 @@
+#ifndef ANIMAL_H
+#define ANIMAL_H
+
+
+
+
 #include <cmath>
 #include <iostream>
 using namespace std;
