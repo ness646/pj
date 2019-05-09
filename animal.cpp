@@ -38,7 +38,6 @@ bool estVide (Animal a){
 }
 
 void mangeRenard(Animal &a){
-    
      a.food += FoodLapin;
  }
 
@@ -60,9 +59,7 @@ bool mortAnimal(Animal a){
         return false;
       }
   }
-  
-  
-  
+    
 bool seReproduitAnimal(Animal a, int nbVoisinsVides){
      if(especeAnimal(a)==Renard){
        return nourritureRenard(a)>=FoodReprod and (hasard()<ProbbirthRenard);

@@ -1,17 +1,17 @@
 #include "ensCoord.hpp"
 
-  /*cree une coordonnee */
+  
  coord creerCoord(int ligne,int colonne){
       coord c;
       c.ligne=ligne;
       c.colonne=colonne;
       return c;
  }
- /*affiche une coord*/
+ 
 void afficheCoord (coord c){
-     cout<<c.ligne<<";"<<c.colonne<<endl;
+    cout<<"("<<getX(c)<<", "<<getY(c)<<")";
  }
- /*recupere la donnée x*/
+ 
  int getX(coord c){
    return c.ligne;
  }
@@ -25,9 +25,10 @@ bool egalCoord(coord c1,coord c2){
    } 
  
 void afficheEC(EnsCoord ec){
-  for(int i=0;i<ec.nbElts;i++) {
-   afficheCoord(ec.tab[i]);
+  for(int i=0; i<ec.nbElts ; i++){
+    afficheCoord(ec.tab[i]);
   }
+  cout<<endl;
 }
  
  
@@ -40,7 +41,7 @@ EnsCoord CreerEC() {
  
 void ajouteEC(EnsCoord &ec, coord c){
   ec.tab[ec.nbElts]=c;
-   ec.nbElts++;
+  ec.nbElts++;
 }
  
  
@@ -49,8 +50,9 @@ int cardEC (EnsCoord ec) {
     
 }
  
- /*cherche  et retourne les voisins d'une coord c*/
+ 
 EnsCoord trouverVoisins(coord c){
+  /*
   EnsCoord CoordAutour;
   CoordAutour.nbElts=0;
   for(int colonne=c.colonne-1; colonne<=c.colonne+1; colonne++){
@@ -61,7 +63,35 @@ EnsCoord trouverVoisins(coord c){
         }
     }
   }
-  return CoordAutour;
+  return CoordAutour;*/
+
+    int minx, maxx;
+    EnsCoord res = CreerEC();
+    int xc = getX(c);
+    int yc = getY(c);
+    if(xc == 0) {
+        minx = 0;
+    } else {
+        minx = xc - 1;
+        ajouteEC(res, creerCoord(minx, yc));
+    }
+    if(xc == TAILLE_GRILLE - 1) {
+        maxx = TAILLE_GRILLE - 1;
+    } else {
+        maxx = xc + 1;
+        ajouteEC(res, creerCoord(maxx, yc));
+    }
+    if(yc != 0) {
+        for(int i = minx; i<= maxx; i++) {
+            ajouteEC(res, creerCoord(i, yc - 1));
+        }
+    }
+    if(yc != TAILLE_GRILLE - 1) {
+        for(int i = minx; i<= maxx; i++) {
+            ajouteEC(res, creerCoord(i, yc + 1));
+        }
+    }
+    return res;
 }
           
  
@@ -73,15 +103,27 @@ EnsCoord trouverVoisins(coord c){
  * attention a ne pas déborder dans le tableau....
  */ 
 void supprimeEC(EnsCoord &ec, coord c) {
-    for(int i=0; i<cardEC(ec); i++) {
-        if(egalCoord(ec.tab[i], c)) {
-            for(int j=i; j<cardEC(ec); j++) {
-                ec.tab[j] = ec.tab[j+1];
-            }
-            ec.nbElts--;
-            return; // on sort de la fonction plus besoin de boucler jusqu a la fin
-        }
+  int index=0;
+  if (ec.nbElts>0){
+    for(int i=0;i<ec.nbElts;i++){
+    
+      if(egalCoord(ec.tab[i],c)){
+        index=i;
+      } 
     }
+
+    for(int i=index;i<ec.nbElts-1;i++){
+      ec.tab[i]=ec.tab[i+1];
+      }   
+        
+    ec.nbElts--;
+  }
+  else{
+    cout<<ec.nbElts<<endl;
+    //ec.nbElts--;
+  }
+
+
 }
 coord randomEC(EnsCoord ec){
   if(ec.nbElts==0)
