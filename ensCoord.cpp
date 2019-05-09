@@ -1,17 +1,17 @@
 #include "ensCoord.hpp"
 
-  
+  /*cree une coordonnee */
  coord creerCoord(int ligne,int colonne){
       coord c;
       c.ligne=ligne;
       c.colonne=colonne;
       return c;
  }
- 
+ /*affiche une coord*/
 void afficheCoord (coord c){
      cout<<c.ligne<<";"<<c.colonne<<endl;
  }
- 
+ /*recupere la donnée x*/
  int getX(coord c){
    return c.ligne;
  }
@@ -49,7 +49,7 @@ int cardEC (EnsCoord ec) {
     
 }
  
- 
+ /*cherche  et retourne les voisins d'une coord c*/
 EnsCoord trouverVoisins(coord c){
   EnsCoord CoordAutour;
   CoordAutour.nbElts=0;
