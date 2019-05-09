@@ -95,5 +95,11 @@ void initialiseGrille(grille &g);
 
 EnsCoord voisinespece(grille g,coord c, Espece e);
 EnsCoord voisinvide(grille g,coord c);
+
+/*Compte le nombre de lapins et de renards present dans une grille
+@param la grille sur laquelle on travaille
+@param le nombre de lapins
+@param le nombre de renards
+*/
 void compteEspeces(grille g, int &lapin, int &renard);
 #endif
