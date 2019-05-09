@@ -119,3 +119,27 @@ EnsCoord voisinvide(grille g,coord c){
       return  ec;
     
     }
+void compteEspeces(grille g, int &lapin, int &renard){
+ lapin = 0;
+ renard = 0;
+ for(int i = 0; i < TAILLE_GRILLE; i++){
+
+ 	 for (int j = 0; j < TAILLE_GRILLE; j++){
+
+ 	 	 if(especeAnimal(g.tab[i][j]) == Renard){
+
+ 	 	 	 renard ++;
+
+ 	 	 }
+
+ 	 	 if(especeAnimal(g.tab[i][j]) == Lapin){
+
+ 	 	 	 lapin ++;
+
+ 	 	 }
+
+ 	 }
+
+ }
+
+}
