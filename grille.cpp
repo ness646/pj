@@ -24,7 +24,7 @@ Animal getAnimal(grille g, coord c) {
     return g.tab[getX(c)][getY(c)];
 }
 
-
+djou si tu vois ce message, sache que je suis au bout de ma vie, mm l'ordi avec lequel je code à une meilleur vie que moi
 void setAnimal(grille &g, Animal a) { 
     g.tab[getX(a.c)][getY(a.c)] = a;
 }
