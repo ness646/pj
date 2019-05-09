@@ -92,4 +92,8 @@ void initialiseGrille(grille &g);
     
     
 */
+
+EnsCoord voisinespece(grille g,coord c, Espece e);
+EnsCoord voisinvide(grille g,coord c);
+void compteEspeces(grille g, int &lapin, int &renard);
 #endif
