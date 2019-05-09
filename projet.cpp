@@ -6,7 +6,7 @@
 
 using namespace std;
 
-
+/*retourne l'ensemble des coordonnees des animaux de l espece e*/
 EnsCoord toutEspece(grille g, Espece e) {
   EnsCoord ec=CreerEC();
   coord c;
@@ -80,8 +80,8 @@ void deplacetousleslapins(grille g, grille &ng){
   coord c;
   Animal a;
   while(cardEC(ec)!=0){
-    c= randomEC(ec);
-    a=getAnimal(g,c);
+    c= randomEC(ec);   /* prend au hazard un animal */
+    a=getAnimal(g,c);  /*accede au coord de a pour modifier ses coord ds la grille */
     deplaceAnimal(g, ng, a);
     int nbVide = cardEC(voisinvide(g,c));
     if(seReproduitAnimal(a,nbVide)){
@@ -91,7 +91,7 @@ void deplacetousleslapins(grille g, grille &ng){
   }
 }
 
-void deplacetousleslapins_(grille g, grille &ng){
+/*void deplacetousleslapins_(grille g, grille &ng){
   EnsCoord ec=CreerEC();
   ec=toutEspece(g, Lapin);
   coord c, c1;
@@ -107,7 +107,7 @@ void deplacetousleslapins_(grille g, grille &ng){
     //afficheGrille(ng);
   }
 }
-
+*/
 void deplacetouslesrenard(grille g,grille &ng){
   EnsCoord ensRenard = toutEspece(g, Renard);
   EnsCoord voisins, casesVides;
