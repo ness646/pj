@@ -6,7 +6,7 @@ using namespace std;
 
 
 
-void grilleVide(grille &g) { //OK
+void grilleVide(grille &g) { 
     for(int y=0; y<TAILLE_GRILLE; y++) {
         for(int x=0; x<TAILLE_GRILLE; x++){
             g.tab[x][y] = creerAnimal(Vide, creerCoord(x,y));
@@ -33,8 +33,9 @@ Animal getAnimal(grille g, coord c) {
 void setAnimal(grille &g, Animal a) { 
     g.tab[getX(a.c)][getY(a.c)] = a;
 }
+/*Vérifier si hchaque animal est bien à sa place dans la grille */
 
-void verifieGrille(grille g) { //OK
+void verifieGrille(grille g) { 
     coord cg;
     Animal animal;
     coord ca;
@@ -53,7 +54,7 @@ void verifieGrille(grille g) { //OK
 
 }
 
-void afficheGrille_ness(grille g){ // OK
+void afficheGrille_ness(grille g){ 
     int lapin, renard, vide;
      lapin=0;
      renard=0;
